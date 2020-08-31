@@ -20,34 +20,37 @@ class _homeState extends State<home> {
 
   void amIconnected() async{
     isInternet=await instance.is_connected();
+    setState(() async{
+      isInternet=await instance.is_connected();
+    });
 //    print(isInternet);
   }
 
   //--------------------GRANTED PERMISSION BUT CANT ACCESS MICROPHONE from webview--------------------------
-  void getPermissions() async{
-
-    Map<Permission, PermissionStatus> statuses = await [
-      Permission.storage,
-      Permission.microphone,
-      Permission.speech,
-    ].request();
-
-    print("----------->>>>>>-------------YE WALA!$statuses[Permission.microphone]");
-
-    var pe=await Permission.contacts.request().isGranted;
-
-    if (pe) {
-      isPermitted=true;
-    }
-
-    print("--------------->IDHAR!$isPermitted");
-  }
+//  void getPermissions() async{
+//
+//    Map<Permission, PermissionStatus> statuses = await [
+//      Permission.storage,
+//      Permission.microphone,
+//      Permission.speech,
+//    ].request();
+//
+//    print("----------->>>>>>-------------YE WALA!$statuses[Permission.microphone]");
+//
+//    var pe=await Permission.contacts.request().isGranted;
+//
+//    if (pe) {
+//      isPermitted=true;
+//    }
+//
+//    print("--------------->IDHAR!$isPermitted");
+//  }
   //-------------------------------------------------------------------------------------------------
 
   @override
   void initState(){
     amIconnected();
-    getPermissions();
+//    getPermissions();
     super.initState();
   }
 
